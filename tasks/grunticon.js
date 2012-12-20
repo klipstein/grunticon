@@ -35,22 +35,22 @@ module.exports = function(grunt ) {
     var previewHTMLsrc = grunt.task.getFile( "grunticon/static/preview.html" );
 
     // text filename that will hold the original list of icons
-    var iconslistfile = grunt.config.iconslistfile || "icons.list.txt";
+    var iconslistfile = config.iconslistfile || "icons.list.txt";
 
     // scss filename that will be used to add our own selectors
     // this file will need to be created manually to avoid overwrite!
     // we list it here so we can add the require rules at beginning of the 3 scss files
-    var iconslistcss = grunt.config.iconslistcss || "icons.list.scss";
+    var iconslistcss = config.iconslistcss || "icons.list.scss";
 
     // SCSS filenames 
-    var datasvgscss = grunt.config.datasvgscss || "icons.data.svg.scss";
-    var datapngscss = grunt.config.datapngscss || "icons.data.png.scss";
-    var urlpngscss = grunt.config.urlpngscss || "icons.fallback.scss";
+    var datasvgscss = config.datasvgscss || "icons.data.svg.scss";
+    var datapngscss = config.datapngscss || "icons.data.png.scss";
+    var urlpngscss = config.urlpngscss || "icons.fallback.scss";
 
     // CSS filenames to be used on preview async call
-    var datasvgcss = grunt.config.datasvgcss || "icons.data.svg.css";
-    var datapngcss = grunt.config.datapngcss || "icons.data.png.css";
-    var urlpngcss = grunt.config.urlpngcss || "icons.fallback.css";
+    var datasvgcss = config.datasvgcss || "icons.data.svg.css";
+    var datapngcss = config.datapngcss || "icons.data.png.css";
+    var urlpngcss = config.urlpngcss || "icons.fallback.css";
 
     //filename for generated output preview HTML file
     var previewhtml = config.previewhtml || "preview.html";
