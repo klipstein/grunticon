@@ -89,6 +89,8 @@ module.exports = function(grunt ) {
     // take it to phantomjs to do the rest
     grunt.log.write( "\ngrunticon now spawning phantomjs..." );
 
+    var done = this.async();
+
     grunt.utils.spawn({
       cmd: 'phantomjs',
       args: [
@@ -112,8 +114,11 @@ module.exports = function(grunt ) {
       ],
       fallback: ''
     }, function(err, result, code) {
-      // TODO boost this up a bit.
-      grunt.log.write("\nSomething went wrong with phantomjs...");
+      if (err) {
+        // TODO boost this up a bit.
+        grunt.fatal("Something went wrong with phantomjs: " + err + " " + result);
+      }
+      done();
     });
   });
 };
