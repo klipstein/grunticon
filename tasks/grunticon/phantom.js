@@ -151,10 +151,10 @@ function processFile(){
         listiconsnames.push( "$" + cssprefix + filenamenoext + " : \"." + cssprefix + filenamenoext + "\";" );
 
         // add rules to svg data css file (changed from .icon-file format to #{$icon-file} format)
-        datacssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url(" + svgdatauri + "); background-repeat: no-repeat; }" );
+        datacssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url('" + svgdatauri + "'); background-repeat: no-repeat; }" );
 
         // add rules to png url css file (changed from .icon-file format to #{$icon-file} format)
-        pngcssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url(" + pngout + filenamenoext + ".png" + "); background-repeat: no-repeat; }" );
+        pngcssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url('" + pngout + filenamenoext + ".png" + "'); background-repeat: no-repeat; }" );
         
         // add markup to the preview html file
         htmlpreviewbody.push( '<pre><code>.' + cssprefix + filenamenoext + ':</code></pre><div class="' + cssprefix + filenamenoext + '" style="width: '+ width +'; height: '+ height +'"></div><hr/>' );
@@ -169,7 +169,7 @@ function processFile(){
           page.render( outputdir + pngout + filenamenoext + ".png" );
 
           // create png data URI (changed from .icon-file format to #{$icon-file} format)
-          pngdatacssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url(" +  pngdatauri + page.renderBase64( "png" ) + "); background-repeat: no-repeat; }" );
+          pngdatacssrules.push( "#{$" + cssprefix + filenamenoext + "} { background-image: url('" +  pngdatauri + page.renderBase64( "png" ) + "'); background-repeat: no-repeat; }" );
 
           // process the next svg
           nextFile();
