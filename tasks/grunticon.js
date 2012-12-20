@@ -112,11 +112,10 @@ module.exports = function(grunt ) {
         datapngcss,
         urlpngcss
       ],
-      fallback: ''
     }, function(err, result, code) {
       if (err) {
         // TODO boost this up a bit.
-        grunt.fatal("Something went wrong with phantomjs: " + err + " " + result);
+        grunt.fatal("Something went wrong with phantomjs: " + err);
       }
       done();
     });
