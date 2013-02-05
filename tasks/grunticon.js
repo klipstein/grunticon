@@ -8,6 +8,8 @@
 
 module.exports = function(grunt ) {
 
+  var uglify = require("uglify-js");
+
   grunt.registerTask( 'grunticon', 'A mystical CSS icon solution.', function() {
 
     // just a quick starting message
@@ -30,9 +32,9 @@ module.exports = function(grunt ) {
         config.dest += "/";
     }
 
-    var asyncCSS = grunt.task.getFile( "grunticon/static/grunticon.loader.js" );
-    var asyncCSSBanner = grunt.task.getFile( "grunticon/static/grunticon.loader.banner.js" );
-    var previewHTMLsrc = grunt.task.getFile( "grunticon/static/preview.html" );
+    var asyncCSS = __dirname + "/grunticon/static/grunticon.loader.js";
+    var asyncCSSBanner = __dirname + "/grunticon/static/grunticon.loader.banner.js";
+    var previewHTMLsrc = __dirname + "/grunticon/static/preview.html";
 
     // text filename that will hold the original list of icons
     var iconslistfile = config.iconslistfile || "icons.list.txt";
@@ -81,7 +83,8 @@ module.exports = function(grunt ) {
     grunt.log.write( "\ngrunticon now minifying the stylesheet loader source." );
     var asyncsrc = grunt.file.read( asyncCSS );
     var banner = grunt.file.read( asyncCSSBanner );
-    var min = banner + "\n" + grunt.helper('uglify', asyncsrc );
+    var asyncsrcMinified = uglify.minify( asyncCSS );
+    var min = banner + "\n" + asyncsrcMinified.code;
     var loaderCodeDest = config.dest + loadersnippet;
     grunt.file.write( loaderCodeDest, min );
     grunt.log.write( "\ngrunticon loader file created." );
@@ -91,10 +94,10 @@ module.exports = function(grunt ) {
 
     var done = this.async();
 
-    grunt.utils.spawn({
+    grunt.util.spawn({
       cmd: 'phantomjs',
       args: [
-        grunt.task.getFile('grunticon/phantom.js'),
+        __dirname + '/grunticon/phantom.js',
         config.src,
         config.dest,
         loaderCodeDest,
